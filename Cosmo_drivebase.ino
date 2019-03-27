@@ -10,6 +10,22 @@ Adafruit_DCMotor *motor4 = AFMS.getMotor(4);
 
 void setup_drivebase(){
   AFMS.begin();
+  //Set default speed as 0
+  motor1 -> setSpeed(0);
+  motor2 -> setSpeed(0);
+  motor3 -> setSpeed(0);
+  motor4 -> setSpeed(0);
+  
+}
+int invert_value(int motor_speed, int stationary_value){
+  int inverted_value = 0;
+  if (motor_speed > stationary_value){
+    inverted_value = stationary_value - (motor_speed % stationary_value);
+  }
+  else if (motor_speed < stationary_value){ 
+    inverted_value = stationary_value + (motor_speed % stationary_value);
+  }
+  return inverted_value;
 }
 
 int scale_joystick(int joystick_value){

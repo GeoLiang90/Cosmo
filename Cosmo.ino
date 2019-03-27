@@ -1,6 +1,5 @@
 #include <PS4BT.h>
 #include <usbhub.h>
-
 // Satisfy the IDE, which needs to see the include statment in the ino too.
 #ifdef dobogusinclude
 #include <spi4teensy3.h>
@@ -8,7 +7,6 @@
 #include <SPI.h>
 
 USB Usb;
-//USBHub Hub1(&Usb); // Some dongles have a hub inside
 //& Means the address of 
 BTD Btd(&Usb); // You have to create the Bluetooth Dongle instance like so
 //Instance of PS4BT
@@ -29,7 +27,6 @@ void setup(){
 
 void loop(){
   Usb.Task();
-  //Preliminary stuff
   if (PS4.connected()){
     int left_speed = 0;
     int right_speed = 0;
