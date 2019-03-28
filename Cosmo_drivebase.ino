@@ -28,6 +28,21 @@ int invert_value(int motor_speed, int stationary_value){
   return inverted_value;
 }
 
+int ramp_motor(int start_speed, int target_speed){
+  //Currently ramping speed by .01 seconds or 10 milliseconds per unit
+  //Increase delay_time for a slower ramp
+  double delay_time = 0.1;
+  //If iterations is positive ramp up, otherwise ramp down
+  int iterations = (target_speed - start_speed)/0.1;
+  if (iterations > 0){
+    
+  }
+  else if (iterations < 0){
+    
+  }
+  return 0;
+}
+
 int scale_joystick(int joystick_value){
   double scale = joystick_value/255;
   scale = pow(scale,2);

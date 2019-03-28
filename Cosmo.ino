@@ -37,7 +37,7 @@ void loop(){
       right_speed = scale_joystick(PS4.getAnalogHat(RightHatY));
     }
     tank_drive(left_speed,right_speed);
-    if (left_speed > 0 || right_speed > 0){
+    if (left_speed > 128 || right_speed > 128){
       Serial.print(F("\r\nDriving"));
     }
     else{
