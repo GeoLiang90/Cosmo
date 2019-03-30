@@ -28,20 +28,30 @@ void setup(){
 void loop(){
   Usb.Task();
   if (PS4.connected()){
-    int left_speed = 0;
-    int right_speed = 0;
+    int left_speed = PS4.getAnalogHat(LeftHatY);
+    int right_speed = PS4.getAnalogHat(RightHatY);
     if (PS4.getAnalogHat(LeftHatY)> 128 || PS4.getAnalogHat(LeftHatY) < 128){
-       left_speed = scale_joystick(PS4.getAnalogHat(LeftHatY));
+       //left_speed += scale_joystick(PS4.getAnalogHat(LeftHatY));
+       left_speed = PS4.getAnalogHat(LeftHatY);
     }
-    if (PS4.getAnalogHat(RightHatY)> 128 || PS4.getAnalogHat(RightHatY) < 128){
-      right_speed = scale_joystick(PS4.getAnalogHat(RightHatY));
+    if (PS4.getAnalogHat(RightHatY)> 126 || PS4.getAnalogHat(RightHatY) < 126){
+      //right_speed += scale_joystick(PS4.getAnalogHat(RightHatY));
+      right_speed = PS4.getAnalogHat(RightHatY);
     }
-    tank_drive(left_speed,right_speed);
-    if (left_speed > 128 || right_speed > 128){
-      Serial.print(F("\r\nDriving"));
+
+    //Serial.print(PS4.getAnalogHat(LeftHatY));
+    //Serial.print(left_speed);
+    //Serial.print(F("\n"));
+    //Serial.print(right_speed);
+    if (left_speed != 0 || right_speed != 0){
+      //Serial.print(F("\r\nDriving \n"));
+      tank_drive(left_speed,right_speed);
+      //Serial.print(left_speed,("\n leftSpeed:" + left_speed));
+      //Serial.print(right_speed,("\n rightSpeed:" + right_speed));
+
     }
     else{
-      Serial.print(F("\r\nStationary"));
+      Serial.print(F("\r\nStationary \n"));
     }
   }
 }
